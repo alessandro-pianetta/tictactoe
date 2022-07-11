@@ -1,0 +1,31 @@
+.square {
+  height: 20vh;
+}
+
+.square.col1 {
+  grid-column-start: 2;
+  border-right: var(--border-style);
+}
+
+.square.col2 {
+  grid-column-start: 3;
+  border-right: var(--border-style);
+}
+
+.square.col3 {
+  grid-column-start: 4;
+}
+
+.square.row1 {
+  grid-row-start: 2;
+  border-bottom: var(--border-style);
+}
+
+.square.row2 {
+  grid-row-start: 3;
+  border-bottom: var(--border-style);
+}
+
+.square.row3 {
+  grid-row-start: 4;
+}

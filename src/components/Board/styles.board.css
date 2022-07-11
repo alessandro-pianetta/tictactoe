@@ -1,0 +1,7 @@
+.board {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, 20vh) 1fr;
+  grid-template-rows: repeat(5, 20vh);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
