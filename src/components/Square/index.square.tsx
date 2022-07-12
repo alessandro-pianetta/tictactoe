@@ -1,12 +1,17 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "./styles.square.css";
+import { SquareProps } from "./types.square";
 
-interface SquareProps {
-  cssClass: string;
-}
-
-function Square({ cssClass }: SquareProps) {
-  return <div className={`square ${cssClass}`}></div>;
+function Square({
+  cssClass,
+  currentPlayer,
+  onClick,
+}: SquareProps): ReactElement {
+  return (
+    <div onMouseDown={onClick} className={`square ${cssClass}`}>
+      <p>{currentPlayer}</p>
+    </div>
+  );
 }
 
 export default Square;
