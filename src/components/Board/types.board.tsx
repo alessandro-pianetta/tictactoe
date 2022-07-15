@@ -1,6 +1,8 @@
 export type Player = "X" | "O" | "";
 
-export type GameStatus = (string | number)[][];
+export type GameMove = [number, string];
+
+export type GameStatus = GameMove[];
 export interface SquareData {
   id: number;
   player: Player;

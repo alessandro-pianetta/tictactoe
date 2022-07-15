@@ -13,9 +13,11 @@ function Board(): ReactElement {
   const [currentPlayer, setCurrentPlayer] = useState("X");
 
   useEffect(() => {
-    console.log(moveCount);
     if (moveCount > 4) {
-      checkGameStatus(markedSquares);
+      const userHasWon: boolean = checkGameStatus(markedSquares);
+      if (userHasWon) {
+        alert("Congrats!");
+      }
     }
   }, [markedSquares, moveCount]);
 

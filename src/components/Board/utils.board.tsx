@@ -2,6 +2,7 @@ import { winPatterns } from "./consts.board";
 import {
   BoardAction,
   BoardState,
+  GameMove,
   GameStatus,
   Player,
   SquareData,
@@ -32,21 +33,30 @@ export function reducer(
   }
 }
 
+// TODO Can the user's actions be memofied?
 export function checkGameStatus(status: GameStatus) {
-  console.log(status);
-  // [
-  //   [0, "X"],
-  //   [1, "O"],
-  //   [2, "X"],
-  //   [4, "O"],
-  //   [3, "X"],
-  // ];
+  let userHasWon: boolean = false;
+  const [lastMove, currentPlayer]: GameMove = status[status.length - 1];
+  const filteredMovesByCurrentPlayer: number[] = status
+    .filter((move) => move[1] === currentPlayer)
+    .map((move) => move[0])
+    .sort();
+  const filteredWinPatterns: number[][] = winPatterns
+    .filter((pattern) => pattern.includes(lastMove))
+    .sort();
 
-  // take lastItem
-  // get status and filter out all non lastItem[1] values
-  // get winPatterns and filter out all non lastItem[0] values
-  // iterate through filteredPatterns and check if all values exist on filteredStatus
-  // If one matches, that player wins
-  // If not, nothing happens
-  // If Moves > 9, stalemate message and reset game
+  /* 
+    For each pattern, check if each number appears in the moves made
+    by current player. If all numbers are included, the user wins.
+  */
+  for (const pattern of filteredWinPatterns) {
+    const isMatch: boolean = pattern.every((x) =>
+      filteredMovesByCurrentPlayer.includes(x)
+    );
+    if (isMatch) {
+      userHasWon = true;
+    }
+  }
+
+  return userHasWon;
 }
